@@ -54,7 +54,7 @@ public class EmployeeResourceTest {
     }
 
     @Test
-    public void deleteEmployee() {
+    public void testDeleteEmployee() {
         var employeeToDelete = given()
                 .body("{\"firstName\":\"test\",\"lastName\":\"junittest\",\"email\":\"test@junit.com\", \"shortName\":\"tdd\"}")
                 .contentType(ContentType.JSON)
