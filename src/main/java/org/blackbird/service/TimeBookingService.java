@@ -20,7 +20,7 @@ public class TimeBookingService implements TimeBookingServiceImpl {
     public Uni<TimeBooking> findById(long id) {
         return employeeService.getCurrentEmp()
                 .chain(employee -> TimeBooking.<TimeBooking>findById(id)
-                        .onItem().ifNull().failWith(() -> new ObjectNotFoundException(id, "Zeit Buchung"))
+                        .onItem().ifNull().failWith(() -> new ObjectNotFoundException(id, "Zeitbuchung"))
                         .onItem().invoke(booking -> {
                             if (!employee.equals(booking.getEmployee())) {
                                 throw new UnauthorizedException("You are not allowed to update this TimeBooking");

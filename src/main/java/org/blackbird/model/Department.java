@@ -2,8 +2,9 @@ package org.blackbird.model;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Version;
 
 @Entity
 public class Department extends PanacheEntity {

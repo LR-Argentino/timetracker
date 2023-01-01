@@ -3,7 +3,6 @@ package org.blackbird.model;
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "Employee")
