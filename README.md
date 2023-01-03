@@ -22,9 +22,6 @@ The final step to being able to distribute and run the application would be to p
 - native: This mode uses GraalVM to package your application into a single native binary executable file for your platform.
 - native-sources: This type is intended for advanced users. It generates the files that will be needed by GraalVM to create the native image binary. It’s like the native packaging type but stops before triggering the actual GraalVM invocation. This allows performing the GraalVM invocation in a separate step, which might be useful for CI/CD pipelines.
 
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
