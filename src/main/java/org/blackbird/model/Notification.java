@@ -21,6 +21,9 @@ public class Notification extends PanacheEntity {
     @ManyToOne
     private Employee employee;
 
+    @ManyToOne
+    private AbsenceType absenceType;
+
     @Version
     private int version;
 
@@ -44,6 +47,10 @@ public class Notification extends PanacheEntity {
         return version;
     }
 
+    public AbsenceType getAbsenceType() {
+        return absenceType;
+    }
+
     public void setContent(String content) {
         this.content = content;
     }
@@ -62,5 +69,9 @@ public class Notification extends PanacheEntity {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public void setAbsenceType(AbsenceType absenceType) {
+        this.absenceType = absenceType;
     }
 }

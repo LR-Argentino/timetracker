@@ -3,6 +3,7 @@ package org.blackbird.service;
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
 import io.quarkus.security.UnauthorizedException;
 import io.smallrye.mutiny.Uni;
+import org.blackbird.model.AbsenceType;
 import org.blackbird.model.Notification;
 import org.hibernate.ObjectNotFoundException;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class NotificationService implements NotificationServiceImpl{
     @Inject
     private EmployeeServiceImpl employeeService;
+
+    @Inject
+    private AbsenceTypeServiceImpl absenceTypeService;
 
     @Override
     public Uni<Notification> findById(long id) {
@@ -40,6 +44,19 @@ public class NotificationService implements NotificationServiceImpl{
         return employeeService.getCurrentEmp()
                 .chain(employee -> {
                     notification.setEmployee(employee);
+                    return notification.persistAndFlush();
+                });
+    }
+
+    @ReactiveTransactional
+    @Override
+    public Uni<Notification> createAbsenceNotification(Notification notification, long absenceId) {
+        return employeeService.getCurrentEmp()
+                .chain(employee -> {
+                    notification.setEmployee(employee);
+                    return absenceTypeService.<AbsenceType>findById(absenceId);
+                }).onItem().transformToUni(item -> {
+                    notification.setAbsenceType(item);
                     return notification.persistAndFlush();
                 });
     }

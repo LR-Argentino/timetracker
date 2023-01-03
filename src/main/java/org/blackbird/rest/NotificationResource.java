@@ -27,6 +27,14 @@ public class NotificationResource {
         return notificationService.createNotification(notification);
     }
 
+    @POST
+    @Path("absences/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ResponseStatus(201)
+    public Uni<Notification> createAbsenceNotification(@PathParam("id") long absenceId,Notification notification) {
+        return notificationService.createAbsenceNotification(notification, absenceId);
+    }
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
